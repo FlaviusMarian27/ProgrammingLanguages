@@ -47,7 +47,6 @@ print("World")
 # Output: Hello World
 ```
 
----
 ## 🧠 Formatted Output
 
 #### 🔹f-strings (Python 3.6+)

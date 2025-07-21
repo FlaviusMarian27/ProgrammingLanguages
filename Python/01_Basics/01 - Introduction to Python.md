@@ -24,4 +24,6 @@
 
 ```python
 print("Hello, world!")
-``
+```
+
+![[Pasted image 20250721193736.png]]
