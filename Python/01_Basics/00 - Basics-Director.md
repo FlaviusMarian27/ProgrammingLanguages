@@ -8,4 +8,6 @@
 - [[03 - Python Variables]]
 - [[04 - Python Operators]]
 - [[05 - Python Keywords]]
+- [[06 - Python Data Types]]
+- [[07 - Conditional Statements in Python]]
 
