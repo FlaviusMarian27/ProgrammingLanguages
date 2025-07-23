@@ -10,4 +10,5 @@
 - [[05 - Python Keywords]]
 - [[06 - Python Data Types]]
 - [[07 - Conditional Statements in Python]]
+- [[08 - For Loops in Python]]
 
