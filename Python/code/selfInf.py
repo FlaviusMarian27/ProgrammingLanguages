@@ -38,11 +38,11 @@ class BankAccount:
     def __init__(self, amount: int):
         self.amount = amount
         
-    def deposit(self, amount: int):
+    def deposit(self, amount: int) -> int:
         self.amount = self.amount + amount
         return self.amount
     
-    def withdraw(self, amount: int):
+    def withdraw(self, amount: int) -> int:
         if self.amount >= amount:
             self.amount = self.amount - amount
             print("Succes!")
