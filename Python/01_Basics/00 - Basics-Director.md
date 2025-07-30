@@ -1,5 +1,4 @@
-
-[[../Python-Notes]]
+- Parent page -> [[../Python-Notes]]
 
 ## 📘 Contents
 
