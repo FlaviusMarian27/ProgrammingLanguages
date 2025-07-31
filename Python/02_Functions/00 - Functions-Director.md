@@ -9,3 +9,7 @@
 - [[05 - Python args and kwargs]]
 - [[06 - Why Python Uses 'Self' as Default Argument]]
 - [[07 -  First-Class Functions in Python]]
+- [[08 - Lambda function]]
+- [[09 - Python map() function]]
+- [[10 - reduce() in Python]]
+- [[11 - filter() in Python]]
