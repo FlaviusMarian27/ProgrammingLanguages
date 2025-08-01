@@ -148,3 +148,26 @@ Function is being called
 Hello!  
 Function finished execution
 ```
+
+
+## Important!
+```Python
+def outer():
+    x = 0
+    def inner():
+        x = x + 1  # ❌ eroare: x local nedefinit
+        print(x)
+    inner()
+
+#vs
+
+def outer():
+    x = 0
+    def inner():
+        nonlocal x
+        x = x + 1
+        print(x)
+    inner()
+
+outer()
+```
