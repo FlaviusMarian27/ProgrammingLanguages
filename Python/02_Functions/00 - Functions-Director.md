@@ -13,3 +13,4 @@
 - [[09 - Python map() function]]
 - [[10 - reduce() in Python]]
 - [[11 - filter() in Python]]
+- [[12 - Python Inner Functions]]
