@@ -14,3 +14,4 @@
 - [[10 - reduce() in Python]]
 - [[11 - filter() in Python]]
 - [[12 - Python Inner Functions]]
+- [[13 - Decorators in Python]]

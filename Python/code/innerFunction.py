@@ -54,3 +54,4 @@ def process_data(data):
     return clean_data_map()
 
 print(process_data(["  Python  ","  Inner Function  "]))
+
