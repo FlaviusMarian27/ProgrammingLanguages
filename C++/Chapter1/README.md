@@ -43,3 +43,4 @@ public:
     Carte(std::string t); // Constructor (doar declaratie)
     void afiseaza();      // Metoda (doar declaratie)
 }; // <--- ATENTIE LA SEMICOLOANA!
+```
