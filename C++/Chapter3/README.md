@@ -67,3 +67,54 @@ Acest concept nu exista explicit în Java (fiind comportamentul default).
 | **Polimorfism** | Implicit (automat) | **Explicit** (trebuie `virtual`) |
 | **Suprascriere** | `@Override` (înainte) | `override` (după funcție) |
 | **Interfețe** | `interface` | Clase Abstracte Pure (metode `= 0`) |
+
+
+## ⚠️ Când Lista de Inițializare este OBLIGATORIE
+
+În C++, spre deosebire de Java, există situații în care **NU** poți folosi atribuirea (`this->variabila = valoare;`) în corpul constructorului. Trebuie neapărat să folosești lista de inițializare (`: variabila(valoare)`).
+
+Motivul: Atribuirea se întâmplă **după** ce variabila a fost deja creată. Unele tipuri de date cer să aibă o valoare exact în momentul "nașterii".
+
+### Cazurile Critice:
+
+#### 1. Constante (`const`)
+O variabilă constantă nu poate fi modificată după ce a fost creată.
+* **Java:** `this.finalVar = x;` merge.
+* **C++:** Ești obligat să o inițializezi în listă.
+
+```cpp
+class ExempluConst {
+    const int ID; // Trebuie sa primeasca valoare la nastere
+
+public:
+    // ❌ GRESIT (Eroare de compilare)
+    // Variabila ID a fost deja creata cu "gunoi", nu mai poate fi schimbata.
+    ExempluConst(int x) {
+        this->ID = x; 
+    }
+
+    // ✅ CORECT
+    // Variabila ID se naste direct cu valoarea x.
+    ExempluConst(int x) : ID(x) { }
+};
+```
+
+### 2. Referințe (&)
+O referință este un alias (o poreclă) pentru o altă variabilă. Ea trebuie să știe pe cine reprezintă din prima clipă. Nu există "referință null" sau "referință goală".
+
+```cpp
+class ExempluRef {
+    int& referintaMea;
+
+public:
+    // ❌ GRESIT
+    // Nu poti crea referinta si apoi sa o "legi".
+    ExempluRef(int& target) {
+        this->referintaMea = target;
+    }
+
+    // ✅ CORECT
+    // Referinta este legata de target in momentul crearii.
+    ExempluRef(int& target) : referintaMea(target) { }
+};
+```
