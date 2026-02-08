@@ -64,3 +64,12 @@ void functie() {
 | **Acces Membri** | `c.metoda()` | **Stack:** `c.metoda()`<br>**Heap:** `c->metoda()` |
 | **Distrugere** | Garbage Collector (Automat) | **Stack:** Automat (la `}`)<br>**Heap:** Manual (`delete c;`) |
 | **Destructor** | Nu există (doar `finalize`) | `~Carte() { ... }` |
+
+
+### 🔒 Notația de Acces (UML)
+
+| Simbol | Acces | Descriere |
+| :---: | :--- | :--- |
+| **`+`** | **Public** | Vizibil oriunde (ex: constructori, metode publice). |
+| **`-`** | **Private** | Vizibil doar în interiorul clasei (ex: variabilele interne). |
+| **`#`** | **Protected** | Vizibil în clasă și în clasele copil (folosit la Moștenire). |
