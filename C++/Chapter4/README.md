@@ -78,3 +78,132 @@ public:
     }
 };
 ```
+
+---
+
+# 📦 std::vector (Echivalentul ArrayList)
+
+În C++, nu folosim `ArrayList`, ci `std::vector`. Este un array dinamic care își redimensionează automat memoria.
+Pentru a-l folosi, trebuie inclus header-ul: `#include <vector>`.
+
+## ⚔️ Java vs. C++ (Tabel Rapid)
+
+| Operație | Java (`ArrayList<Integer>`) | C++ (`std::vector<int>`) |
+| :--- | :--- | :--- |
+| **Creare** | `var list = new ArrayList<>();` | `std::vector<int> list;` |
+| **Adăugare** | `list.add(10);` | `list.push_back(10);` |
+| **Accesare** | `list.get(0);` | `list[0]` sau `list.at(0)` |
+| **Modificare** | `list.set(0, 50);` | `list[0] = 50;` |
+| **Dimensiune** | `list.size();` | `list.size();` |
+| **Ștergere (Ultimul)**| `list.remove(list.size()-1);` | `list.pop_back();` |
+| **Verificare gol** | `list.isEmpty();` | `list.empty();` |
+| **Ștergere Tot** | `list.clear();` | `list.clear();` |
+
+---
+
+## 🛠️ Cele mai folosite funcții
+
+### 1. Adăugarea elementelor
+În C++ se adaugă mereu la final (coadă).
+```cpp
+vector<string> nume;
+nume.push_back("Ana");
+nume.push_back("Ion");
+```
+
+## 2. Accesarea Elementelor
+Există două moduri principale:
+
+* **Rapid (Nesigur):** `nume[0]`
+    * Nu verifică limitele memoriei.
+    * **Riscuri:** Dacă accesezi `nume[100]` și lista are doar 2 elemente, programul crapă (*Segmentation Fault*) sau, mai rău, returnează date "gunoi" de la acea adresă.
+* **Sigur (Lent):** `nume.at(0)`
+    * Verifică limitele înainte de accesare.
+    * **Siguranță:** Dacă greșești indexul, aruncă o excepție controlată (`std::out_of_range`).
+
+---
+
+## 3. Iterarea (Parcurgerea)
+
+### Varianta Modernă (Recomandată)
+Cunoscută ca *Range-based for loop*. Este exact ca "Enhanced For" din Java.
+```cpp
+for (string s : nume) {
+    cout << s << endl;
+}
+```
+
+### Varianta Clasică (cu index)
+*   ⚠️**Atenție**: Funcția **.size()** returnează **unsigned int** (sau **size_t**), nu **int**.
+
+```cpp
+// Folosim 'size_t' pentru a evita warning-urile de comparatie (int vs unsigned)
+for (size_t i = 0; i < nume.size(); i++) {
+    cout << nume[i] << endl;
+}
+```
+
+Sigur, iată textul formatat, gata de adăugat în continuarea secțiunii despre std::vector din README-ul tău.
+
+Markdown
+## 2. Accesarea Elementelor
+Există două moduri principale:
+
+* **Rapid (Nesigur):** `nume[0]`
+    * Nu verifică limitele memoriei.
+    * **Riscuri:** Dacă accesezi `nume[100]` și lista are doar 2 elemente, programul crapă (*Segmentation Fault*) sau, mai rău, returnează date "gunoi" de la acea adresă.
+* **Sigur (Lent):** `nume.at(0)`
+    * Verifică limitele înainte de accesare.
+    * **Siguranță:** Dacă greșești indexul, aruncă o excepție controlată (`std::out_of_range`).
+
+---
+
+## 3. Iterarea (Parcurgerea)
+
+### Varianta Modernă (Recomandată)
+Cunoscută ca *Range-based for loop*. Este exact ca "Enhanced For" din Java.
+```cpp
+for (string s : nume) {
+    cout << s << endl;
+}
+Varianta Clasică (cu index)
+⚠️ Atenție: Funcția .size() returnează unsigned int (sau size_t), nu int.
+
+C++
+// Folosim 'size_t' pentru a evita warning-urile de comparatie (int vs unsigned)
+for (size_t i = 0; i < nume.size(); i++) {
+    cout << nume[i] << endl;
+}
+```
+
+### 4. Ștergerea unui element specific
+
+*   În C++, ștergerea de la un index arbitrar se face folosind iteratori, nu direct indexul numeric ca în Java (**remove(2)**).
+
+### ⚠️ Diferență Critică: Vector de Obiecte vs. Pointeri
+
+**Cazul 1: Vector de Obiecte (Valori)**
+Stochează copiile obiectelor direct în vector. 
+
+```cpp
+vector<Robot> roboti;
+roboti.push_back(Robot("R2D2")); 
+// ATENTIE: Aici se face o COPIE a obiectului in vector.
+// Memoria este eliberata AUTOMAT cand vectorul este distrus.
+```
+
+**Cazul 2: Vector de Pointeri (Polimorfism)**
+*   Dacă vrei polimorfism (ex: Animal* care ține și Pisica și Caine la un loc), ești obligat să folosești vector de pointeri.
+
+```cpp
+vector<Animal*> zoo;
+zoo.push_back(new Pisica("Tom")); // Heap Allocation
+zoo.push_back(new Caine("Rex"));  // Heap Allocation
+
+// CRITIC: Cand nu mai ai nevoie de vector, trebuie sa dai DELETE manual!
+// Altfel ai Memory Leak (Java are Garbage Collector, C++ NU).
+for(size_t i = 0; i < zoo.size(); i++) {
+    delete zoo[i]; // Sterge obiectul din memorie (Heap)
+}
+zoo.clear(); // Goleste vectorul de adrese (Stack)
+```
